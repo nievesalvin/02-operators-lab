@@ -12,7 +12,7 @@
 
 In this lab, we'll be combining our knowledge of operators (like comparison and boolean operators) with our new understanding of control flow using `if`, `elsif`, and `else` statements. 
 
-This lab will require you to use the comparison operators (`>`, `<`, `==`, etc.) and boolean operators that you learned about in the previous unit.
+This lab will require you to use the comparison operators (`>`, `<`, `==`, etc.) and boolean operators that you learned about previously.
 
 This lab will require you to use a new operator that you haven't been introduced to before: the ternary operator.
 
@@ -42,12 +42,12 @@ age = 1
 age < 2 ? "baby" : "not a baby"
 ```
 
-How does this work? In the above statement, the code before the `?` ("question mark") is evaluated as a boolean expression. If it returns true, the code on the left side of the `:` ("colon") will run, otherwise the code on the right will run. 
+How does this work? In the above statement, the code before the `?` ("question mark") is evaluated as a boolean expression. If it returns true, the expression on the left side of the `:` ("colon") will get returned, otherwise the expression on the right will return. 
 
 It's a way of expressing an `if` and an `else` statement together on one line in this format:
 
 ```ruby
-conditional ? action_if_true : action_if_false
+conditional ? expression_if_true : expression_if_false
 ```
 ## Why Use the Ternary Operator?
 
@@ -57,26 +57,38 @@ Our first implementation of our are-you-a-baby? program required six lines of co
 
 **A Note on Usage:** *We use the ternary operator in a case like the one here when the* `if` *&* `else` *statement pair that we would otherwise construct is* **very simple.** *If your situation requires* `if` *and* `elsif` *statements, then the switching is too complex for the ternary operator making it inappropriate to use.*
 
+## A common misunderstanding
+Not every `if`/`else` can be replaced with a ternary operator.  Notice that this works:
+```ruby 
+puts name.length > 7 ? "Your name is long!" : "Your name is short!"
+```
+However, this does NOT work:
+```ruby 
+name.length > 7 ? puts "Your name is long!" : puts "Your name is short!"
+```
+
+In short, you can only return expressions on either side of the `:`, you cannot run any line of code.
+
 ## Statement Modifiers
 Ruby has a useful feature called a statement modifier that allows you to put a conditional at the end of a statement. For example, let's consider this statement:
 
 ```ruby
-puts "Hey, it's 2015!"
+puts "Hey, it's 2016!"
 ``` 
 
-However, we don't want to say "Hey, it's 2015!" every time this code is run. We only want to say it's 2015 if it's actually 2015. This is a good case for an `if` statement modifier.
+However, we don't want to say "Hey, it's 2016!" every time this code is run. We only want to say it's 2016 if it's actually 2016. This is a good case for an `if` statement modifier.
 
 ```ruby
 this_year = Time.now.year
-puts "Hey, it's 2015!" if this_year == "2015"
+puts "Hey, it's 2016!" if this_year == 2016
 ``` 
-Now, with the statement modifier `if this_year == "2015"` we are only putting it if the year is, in fact, 2015.
+Now, with the statement modifier `if this_year == 2016` we are only putting it if the year is, in fact, 2016.
 
 We can also use `unless` in a statement modifier as well. 
 
 ```ruby
 this_year = Time.now.year
-puts "Hey, it's not 2015!" unless this_year == "2015"
+puts "Hey, it's not 2016!" unless this_year == 2016
 ``` 
 
 
@@ -88,13 +100,9 @@ puts "Hey, it's not 2015!" unless this_year == "2015"
   * Use an `if`/`else` statement pair to build the `unsafe?` method. It should return `true` if the speed is either below `40` or above `60`. *Going 30 mph on the freeway would be unsafe, as would going 95 mph. Going 50 miles per hour, however, would return `false` as that's within the "safe" range.*
 4.  Build the method `not_safe?` that is a version of your previous `unsafe?` method but use the ternary operator (`?:`) instead of an `if`/`else` statement pair.
 
-**A Debugging Reminder:** You can interact with your methods by typing `require 'pry'` at the top of your file, running `gem install pry` in the terminal, and then placing the line `binding.pry` inside the method that you want to play around with. Then, when you run the test suite using `learn` in your terminal, your program will freeze when it hits the binding and you'll be able to explore your method inside your console.
+**A Debugging Reminder:** You can interact with your methods by typing `require 'pry'` at the top of your file, (running `gem install pry` in the terminal if you haven't already), and then placing the line `binding.pry` inside the method that you want to play around with. Then, when you run the test suite using `rspec` in your terminal, your program will freeze when it hits the binding and you'll be able to explore your method inside your console.
 
 ## Resources
 
 * [Ruby Operators](http://www.techotopia.com/index.php/Ruby_Operators)
 * [Stack Overflow - Ternary Operators](http://stackoverflow.com/a/4252945)
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/operators' title='Operators'>Operators</a> on Learn.co and start learning to code for free.</p>
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/operators'>Ternary Operators and Statement Modifiers</a> on Learn.co and start learning to code for free.</p>
